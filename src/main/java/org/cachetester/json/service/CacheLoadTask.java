@@ -28,14 +28,15 @@ public class CacheLoadTask implements Callable<Long> {
         long currentThreadExecutions = 0;
         long startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() - startTime < testingPeriod) {
-                BufferedReader fileInStream = new BufferedReader(new FileReader(jsonFilePath));
-                ObjectMapper om = new ObjectMapper();
-                SampleFile sampleFile = om.readValue(fileInStream, SampleFile.class);
-                cacheInterface.uploadJson(sampleFile);
-                for (int k = 0; k < numberOfCacheRetrievals; k++) {
-                    cacheInterface.extractJson(sampleFile.getId(), sampleFile.getCollectionName());
+                try (BufferedReader fileInStream = new BufferedReader(new FileReader(jsonFilePath))) {
+                    ObjectMapper om = new ObjectMapper();
+                    SampleFile sampleFile = om.readValue(fileInStream, SampleFile.class);
+                    cacheInterface.uploadJson(sampleFile);
+                    for (int k = 0; k < numberOfCacheRetrievals; k++) {
+                        cacheInterface.extractJson(sampleFile.getId(), sampleFile.getCollectionName());
+                    }
+                    currentThreadExecutions++;
                 }
-                currentThreadExecutions++;
         }
         return currentThreadExecutions;
     }

@@ -1,0 +1,16 @@
+{
+"type":"Bygning",
+"processingState":2,
+"namespace":"http://data.gov.dk/bbr/bygning",
+"localId":"2375ce43-9fc4-4b77-b409-2e6a0c555d0e",
+"regionCode":"0440",
+"registeredFrom":"2017-06-02",
+"sector":"BBR",
+"registeredTo":"2024-04-15",
+"validFrom":"2012-12-20",
+"validTo":null,
+"status":3,
+"buildingNumber":"25B",
+"houseId":"0a3f5088-b646-32b8-e044-0003ba298018",
+"propertyId":"e0eb37f4-17b0-4e86-ae5d-980e50069d9f"
+}
